@@ -1,0 +1,7 @@
+{
+  "name": "projectxApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
