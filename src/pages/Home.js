@@ -6,13 +6,13 @@ import { IonPage, IonContent, IonSlide, IonSlides, IonHeader, IonToolbar, IonRou
   IonTitle, IonTabs, IonTab, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge } from '@ionic/react';
 import { calendar, fastFood, map, informationCircle } from 'ionicons/icons';
 
-import { middle} from './app/middle';
+import middle from './app/middle';
 
 import './Home.scss';
 
 const Home = (props) => {
 
-   console.log('tiwnfwf', this.props.storesStore);
+  //  console.log('tiwnfwf', props.storesStore);
 
   return (
     <IonTabs >
@@ -20,6 +20,7 @@ const Home = (props) => {
         <Route path="/app/schedule" component={middle} exact={true} />
         <Route path="/app/fast-food" component={middle} exact={true} />
         <Route path="/app/map" component={middle} exact={true} />
+        {/* <Router path="/app/fast-food/:id" component={} exact={true} /> */}
         <Route path="/app" render={() => <Redirect to="/app/schedule" />} exact={true} />
       </IonRouterOutlet>
       
