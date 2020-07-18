@@ -27,7 +27,15 @@
     .select_address_icon {
       align-self: center;
       font-size: 20px;
+      flex-basis: 25px;
       margin-right: 10px;
     }
+  }
+
+  .store_modal_product_list {
+    // align-self: center;
+    // font-size: 20px;
+    // flex-basis: 25px;
+    background-color: var(--ion-background-color);
   }
 }

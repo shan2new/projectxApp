@@ -9,6 +9,7 @@ import { arrowDown } from 'ionicons/icons';
 import './StoreModal.scss';
 import StoreHeader from '../../components/StoreHeader';
 import SelectAddress from '../../components/SelectAddress';
+import StoreModalList from '../../components/StoreModalList';
 
 const StoreModal = (props) => {
 
@@ -47,6 +48,7 @@ const StoreModal = (props) => {
           <StoreHeader store={selectedStore.selectedStore}/>
         </div>
         <SelectAddress />
+        <StoreModalList store={selectedStore.selectedStore}/>
       </IonContent>
     </IonModal>
   );
