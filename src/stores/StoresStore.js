@@ -1,10 +1,11 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, toJS } from 'mobx';
 import axios from './Helper/axios';
 
 class StoresStore {
 
-  @observable selectedStore = '';
+  @observable selectedStoreId = '';
   @observable stores = [];
+  @observable isFetched = false;
 
   constructor () {
     this.hydrate();
@@ -12,38 +13,18 @@ class StoresStore {
 
   @action
   hydrate () {
-    // this.stores = [
-    //   {
-    //     'h2': 'Header',
-    //     'h3': 'I\'m a big deal',
-    //     'p': 'Listen, I\'ve had a pretty messed up day...'
-    //   },
-    //   {
-    //     'h2': 'Header',
-    //     'h3': 'I\'m a big deal',
-    //     'p': 'Listen, I\'ve had a pretty messed up day...'
-    //   },
-    //   {
-    //     'h2': 'Header',
-    //     'h3': 'I\'m a big deal',
-    //     'p': 'Listen, I\'ve had a pretty messed up day...'
-    //   },
-    //   {
-    //     'h2': 'Header',
-    //     'h3': 'I\'m a big deal',
-    //     'p': 'Listen, I\'ve had a pretty messed up day...'
-    //   },
-    //   {
-    //     'h2': 'Header',
-    //     'h3': 'I\'m a big deal',
-    //     'p': 'Listen, I\'ve had a pretty messed up day...'
-    //   }
-    // ];
     axios.get('/products/list')
       .then(({data}) => {
         console.log(data.restaurants);
         this.stores = data.restaurants;
+
+        this.isFetched = true;
       });
+  }
+
+  @action
+  selectStore (storeId) {
+    this.selectedStoreId = storeId;
   }
 
   @computed
