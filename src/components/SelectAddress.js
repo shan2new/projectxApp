@@ -5,6 +5,8 @@ import _ from 'lodash';
 import { IonLabel, IonAvatar, IonRippleEffect, IonIcon } from '@ionic/react';
 import { subwayOutline, arrowDown } from 'ionicons/icons';
 
+import './SelectAddress.scss';
+
 const address = '3/1361, Vasundhara, ghaziabad, Uttar Pradesh, 201012.'
 
 const SelectAddress = (props) => {
