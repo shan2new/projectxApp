@@ -4,22 +4,20 @@ import { inject, observer } from 'mobx-react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonPage, IonContent, IonSlide, IonSlides, IonHeader, IonToolbar, IonRouterOutlet,
   IonTitle, IonTabs, IonTab, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge } from '@ionic/react';
-import { calendar, fastFood, map, informationCircle } from 'ionicons/icons';
+import { calendar, fastFood, map, informationCircle, person } from 'ionicons/icons';
 
 import middle from './app/middle';
+import profile from './app/profile';
 
 import './Home.scss';
 
 const Home = (props) => {
-
-  //  console.log('tiwnfwf', props.storesStore);
-
   return (
     <IonTabs >
       <IonRouterOutlet>
         <Route path="/app/schedule" component={middle} exact={true} />
         <Route path="/app/fast-food" component={middle} exact={true} />
-        <Route path="/app/map" component={middle} exact={true} />
+        <Route path="/app/profile" component={profile} exact={true} />
         {/* <Router path="/app/fast-food/:id" component={} exact={true} /> */}
         <Route path="/app" render={() => <Redirect to="/app/schedule" />} exact={true} />
       </IonRouterOutlet>
@@ -36,9 +34,9 @@ const Home = (props) => {
           <IonLabel>Fast Food</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="map" href='/app/map'>
-          <IonIcon icon={map} />
-          <IonLabel>Map</IonLabel>
+        <IonTabButton tab="map" href='/app/profile'>
+          <IonIcon icon={person} />
+          <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
