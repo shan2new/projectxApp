@@ -2,9 +2,9 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import _ from 'lodash';
 
-import { IonThumbnail, IonPage, IonContent, IonAvatar, 
+import { IonThumbnail, IonPage, IonContent, 
   IonList, IonTitle, IonHeader, IonToolbar, 
-  IonListHeader, IonItem, IonLabel, IonSearchbar } from '@ionic/react';
+  IonListHeader, IonItem, IonLabel } from '@ionic/react';
 
 import './middle.scss';
 import StoreModal from './StoreModal';

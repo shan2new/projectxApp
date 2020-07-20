@@ -7,28 +7,33 @@ class StoresStore {
   @observable stores = [];
   @observable isFetched = false;
 
-  constructor () {
+  constructor() {
     this.hydrate();
   }
 
   @action
-  hydrate () {
-    axios.get('/products/list')
-      .then(({data}) => {
-        console.log(data.restaurants);
-        this.stores = data.restaurants;
+  hydrate() {
+    axios.get('/producer/list')
+      .then(({ data }) => {
+        data.forEach((store) => {
+          store.id = store._id;
+          delete store._id
+        });
+        
+        console.log(data);
+        this.stores = data;
 
         this.isFetched = true;
       });
   }
 
   @action
-  selectStore (storeId) {
+  selectStore(storeId) {
     this.selectedStoreId = storeId;
   }
 
   @computed
-  get getStores () {
+  get getStores() {
     return this.stores;
   }
 }

@@ -4,10 +4,11 @@ import { inject, observer } from 'mobx-react'
 import {
   IonToolbar, IonModal, IonButtons,
   IonHeader, IonButton, IonIcon, IonLabel,
-  IonContent, IonItem, IonItemDivider
+  IonContent, IonItem, IonItemDivider, IonRouterLink
 } from '@ionic/react';
 import { arrowBack } from 'ionicons/icons';
 import SelectAddress from './SelectAddress';
+import { NavLink } from 'react-router-dom';
 
 const TempOrderSheet = (props) => {
 
@@ -61,7 +62,9 @@ const TempOrderSheet = (props) => {
         </IonLabel>
         <p style={{ marginRight: 10 }}>₹ {orderCartStore.cartTotal}</p>
       </IonItem>
-      <IonButton slot='end' expand="block" fill='solid' size='large'>Confirm Order</IonButton>
+      <NavLink to='/app/orders'>
+        <IonButton slot='end' type='submit' expand="block" fill='solid' size='large'  onClick={() => orderCartStore.confirmOrder()}>Confirm Order</IonButton>
+      </NavLink>
     </IonModal>
   );
 }

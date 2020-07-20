@@ -1,4 +1,6 @@
 import { observable, action, computed } from 'mobx';
+import { Route } from 'react-router';
+import selectedStore from './SelectedStore';
 
 class OrderCartStore {
   @observable orderList = [];
@@ -16,6 +18,15 @@ class OrderCartStore {
   @action 
   closeCart () {
     this.isCartConfirmationOpen = false;
+  }
+
+  @action
+  confirmOrder () {
+    setTimeout(() => {
+      this.closeCart();
+      selectedStore.toggleModal();
+      this.orderList = [];
+    }, 200);
   }
 
   @computed

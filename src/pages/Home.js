@@ -4,10 +4,11 @@ import { inject, observer } from 'mobx-react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonPage, IonContent, IonSlide, IonSlides, IonHeader, IonToolbar, IonRouterOutlet,
   IonTitle, IonTabs, IonTab, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge } from '@ionic/react';
-import { calendar, fastFood, map, informationCircle, person } from 'ionicons/icons';
+import { fastFood, map, person } from 'ionicons/icons';
 
 import middle from './app/middle';
 import profile from './app/profile';
+import MyOrderPage from './app/MyOrderPage';
 
 import './Home.scss';
 
@@ -15,18 +16,18 @@ const Home = (props) => {
   return (
     <IonTabs >
       <IonRouterOutlet>
-        <Route path="/app/schedule" component={middle} exact={true} />
-        <Route path="/app/fast-food" component={middle} exact={true} />
         <Route path="/app/profile" component={profile} exact={true} />
+        <Route path="/app/fast-food" component={middle} exact={true} />
+        <Route path="/app/orders" component={MyOrderPage} exact={true} />
         {/* <Router path="/app/fast-food/:id" component={} exact={true} /> */}
         <Route path="/app" render={() => <Redirect to="/app/schedule" />} exact={true} />
       </IonRouterOutlet>
       
       <IonTabBar slot="bottom">
-        <IonTabButton tab="schedule" href='/app/schedule'>
-          <IonIcon icon={calendar} />
-          <IonLabel>Schedule</IonLabel>
-          <IonBadge>6</IonBadge>
+
+        <IonTabButton tab="profile" href='/app/profile'>
+          <IonIcon icon={person} />
+          <IonLabel>Profile</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="fast-food" href='/app/fast-food'>
@@ -34,10 +35,11 @@ const Home = (props) => {
           <IonLabel>Fast Food</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="map" href='/app/profile'>
-          <IonIcon icon={person} />
-          <IonLabel>Profile</IonLabel>
+        <IonTabButton tab="orders" href='/app/orders'>
+          <IonIcon icon={map} />
+          <IonLabel>Your orders</IonLabel>
         </IonTabButton>
+
       </IonTabBar>
     </IonTabs>
   );

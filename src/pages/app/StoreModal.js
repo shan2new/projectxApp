@@ -42,13 +42,13 @@ const StoreModal = (props) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="track-content">
-        {/* Replace it with Ion Slides */}
+        {/* ToDO: Replace it with Ion Slides */}
         <img src={selectedStore.image} alt='' className='store_modal_img'/>
         <div className='store_modal_content'>
           <StoreHeader store={selectedStore.selectedStore}/>
         </div>
         <SelectAddress />
-        <StoreModalList store={selectedStore.selectedStore}/>
+        <StoreModalList selectedStore={selectedStore.selectedStore}/>
       </IonContent>
     </IonModal>
   );

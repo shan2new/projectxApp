@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { IonLabel, IonList, IonListHeader, IonItem, IonThumbnail, IonIcon } from '@ionic/react';
 import { arrowForward } from 'ionicons/icons';
 import TempOrderSheet from './TempOrderSheet';
+import { mergeStoreToProduct } from './ComponentHelpers/ProductUtils';
 
 const productData = [{
   price: 123,
@@ -22,12 +23,12 @@ const productData = [{
 
 const StoreModalList = (props) => {
 
-  const {orderCartStore} = props;
+  const { orderCartStore, selectedStore } = props;
 
   const handleProductClick = (index) => {
+    mergeStoreToProduct(productData[index], selectedStore);
     orderCartStore.openCart([productData[index]]);
   }
-
 
   return (
     <>
@@ -52,7 +53,7 @@ const StoreModalList = (props) => {
         }
 
       </IonList>
-      <TempOrderSheet/>
+      <TempOrderSheet />
     </>
   );
 }
