@@ -20,7 +20,7 @@ const Home = (props) => {
         <Route path="/app/fast-food" component={middle} exact={true} />
         <Route path="/app/orders" component={MyOrderPage} exact={true} />
         {/* <Router path="/app/fast-food/:id" component={} exact={true} /> */}
-        <Route path="/app" render={() => <Redirect to="/app/schedule" />} exact={true} />
+        <Route path="/app" render={() => <Redirect to="/app/fast-food" />} exact={true} />
       </IonRouterOutlet>
       
       <IonTabBar slot="bottom">
