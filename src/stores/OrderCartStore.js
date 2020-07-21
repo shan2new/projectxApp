@@ -1,12 +1,11 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, decorate } from 'mobx';
 import { Route } from 'react-router';
 import selectedStore from './SelectedStore';
 
 class OrderCartStore {
-  @observable orderList = [];
-  @observable isCartConfirmationOpen = false;
+   orderList = observable([]);
+   isCartConfirmationOpen = false;
 
-  @action
   openCart(addOrderList = []) {
     addOrderList.forEach((order) => {
       this.orderList.push(order);
@@ -14,13 +13,11 @@ class OrderCartStore {
 
     this.isCartConfirmationOpen = true;
   }
-
-  @action 
+ 
   closeCart () {
     this.isCartConfirmationOpen = false;
   }
 
-  @action
   confirmOrder () {
     setTimeout(() => {
       this.closeCart();
@@ -29,16 +26,24 @@ class OrderCartStore {
     }, 200);
   }
 
-  @computed
   get isOpen () {
     return this.isCartConfirmationOpen;
   }
-
-  @computed 
+ 
   get cartTotal () {
     return this.orderList.reduce((total, order, index) => total + (order.quantity || 1) * order.price, 0);
   }
 }
+
+decorate(OrderCartStore, {
+  orderList: observable,
+  isCartConfirmationOpen: observable,
+  openCart: action,
+  closeCart: action,
+  confirmOrder: action,
+  isOpen: computed,
+  cartTotal: computed
+})
 
 const orderCartStore = window.orderCartStore = new OrderCartStore();
 

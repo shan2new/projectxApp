@@ -1,31 +1,28 @@
-import { observable, action, computed, toJS } from 'mobx';
+import { observable, action, computed, toJS, decorate} from 'mobx';
 import axios from './Helper/axios';
 
 class ProfileStore {
 
-  @observable name = '';
-  @observable isLoggedIn = false;
+  name = '';
+  isLoggedIn = false;
 
-  @action
   setName (name) {
     this.name = name;
   }
 
-  @action
   logout () {
     this.name = '';
     this.isLoggedIn = false;
   }
 
-  @action
   login (name) {
     console.log("Did I came here?", name)
     this.name = name;
     this.isLoggedIn = true;
   }
 
-  @action
   async silentLogin() {
+    console.log("localStorage.identifierId", localStorage.identifierId)
     if(!localStorage.identifierId) {
       return;
     }
@@ -39,17 +36,27 @@ class ProfileStore {
 
   }
 
-  @computed
   get getName () {
     return this.name;
   }
 
-  @computed
   get getIsLoggedIn () {
     return this.isLoggedIn;
   }
   
 }
+
+decorate(ProfileStore, {
+  name: observable,
+  isLoggedIn: observable,
+  setName: action,
+  logout: action,
+  login: action,
+  setStoreBoolean: action,
+  silentLogin: action,
+  getName: computed,
+  getIsLoggedIn: computed
+,});
 
 const profileStore = window.profileStore = new ProfileStore();
 

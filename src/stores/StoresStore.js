@@ -1,17 +1,17 @@
-import { observable, action, computed, toJS } from 'mobx';
+import { observable, action, computed, toJS,decorate } from 'mobx';
 import axios from './Helper/axios';
+import { hydrate } from 'react-dom';
 
 class StoresStore {
 
-  @observable selectedStoreId = '';
-  @observable stores = [];
-  @observable isFetched = false;
+  selectedStoreId = '';
+  stores = [];
+  isFetched = false;
 
   constructor() {
     this.hydrate();
   }
 
-  @action
   hydrate() {
     axios.get('/producer/list')
       .then(({ data }) => {
@@ -27,16 +27,24 @@ class StoresStore {
       });
   }
 
-  @action
   selectStore(storeId) {
     this.selectedStoreId = storeId;
   }
 
-  @computed
+
   get getStores() {
     return this.stores;
   }
 }
+
+decorate(StoresStore, {
+  selectStore: observable,
+  stores: observable,
+  isFetched: observable,
+  hydrate: action,
+  selectStore: action,
+  getStores: computed
+});
 
 const storesStore = window.storesStore = new StoresStore();
 

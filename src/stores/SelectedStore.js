@@ -1,12 +1,12 @@
-import { observable, action, computed, toJS, reaction } from 'mobx';
+import { observable, action, computed, toJS, reaction, decorate } from 'mobx';
 import StoresStore from './StoresStore';
 import axios from './Helper/axios';
 
 class SelectedStore {
 
-  @observable selectedStore = {};
-  @observable isSelectedSomeStore = false;
-  @observable isOpen = false;
+  selectedStore = {};
+  isSelectedSomeStore = false;
+  isOpen = false;
 
   constructor () {
     reaction(() => StoresStore.selectedStoreId, (storeId) => {
@@ -25,7 +25,6 @@ class SelectedStore {
     })
   }
 
-  @action
   toggleModal () {
     this.isOpen = !this.isOpen;
 
@@ -33,26 +32,33 @@ class SelectedStore {
     !this.isOpen && (StoresStore.selectedStoreId = null);
   }
 
-  @computed
   get name () {
     return this.selectedStore.name;
   }
 
-  @computed
   get image () {
     return this.selectedStore.featured_image;
   }
 
-  @computed
   get getStoreData () {
     return this.selectedStore;
   }
-
-  @computed 
+ 
   get isStoreModalOpen () {
     return this.isOpen || false;
   }
+  
 }
+
+decorate(SelectedStore, {
+  selectedStore: observable,
+  isSelectedSomeStore: observable,
+  isOpen: observable,
+  toggleModal: action,
+  name: computed,
+  getStoreData: computed,
+  isStoreModalOpen: computed
+});
 
 const selectedStore = window.selectedStore = new SelectedStore();
 
